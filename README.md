@@ -1,4 +1,4 @@
-# ElectricBreakConversion
+# ElectricBrakeConversion
 
 Electric parking brake controller for a 12V linear actuator (e.g., 350lb, 50mm stroke) using an **ESP32** and a **BTS7960** motor driver.
 
