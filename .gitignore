@@ -1,0 +1,26 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+*.swo
+
+# Arduino / PlatformIO build outputs
+*.hex
+*.bin
+*.elf
+*.map
+*.log
+
+# Arduino IDE
+*.ino~
+
+# PlatformIO
+.pio/
+
+# Python / misc
+__pycache__/
+*.pyc
+
+# PDFs you may export locally
+*.pdf
