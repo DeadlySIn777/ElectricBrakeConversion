@@ -3,782 +3,585 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Electric Parking Brake Controller - Installation Manual</title>
+  <title>Electric Parking Brake Controller v3.1 RUGGED - Wiring Manual</title>
   <style>
     :root {
-      --ink: #1f2937;
-      --muted: #6b7280;
-      --bg: #f3f4f6;
-      --paper: #ffffff;
-      --accent: #0ea5e9;
-      --accent2: #ef4444;
-      --ok: #10b981;
-      --warn: #f59e0b;
-      --bad: #ef4444;
-      --border: #e5e7eb;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      --primary: #1e88e5;
+      --primary-dark: #1565c0;
+      --success: #43a047;
+      --warning: #ff9800;
+      --danger: #e53935;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --text: #212121;
+      --text-light: #616161;
+      --border: #e0e0e0;
+      --rugged: #ff6b35;
     }
-
     * { box-sizing: border-box; }
-
     body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       margin: 0;
-      padding: 32px 18px;
-      font-family: var(--sans);
-      color: var(--ink);
+      padding: 0;
       background: var(--bg);
-      line-height: 1.55;
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 14px;
     }
-
-    .container {
-      max-width: 920px;
-      margin: 0 auto;
-    }
-
-    .page {
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 34px;
-      margin: 0 0 22px 0;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
-    }
-
-    h1 {
-      margin: 0 0 10px 0;
-      font-size: 2.1rem;
-      letter-spacing: -0.02em;
-      text-align: center;
-    }
-
-    .subtitle {
-      margin: 0 0 18px 0;
-      text-align: center;
-      color: var(--muted);
-      font-size: 1.02rem;
-    }
-
-    .pill {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.85rem;
-      background: #fafafa;
-    }
-
-    h2 {
-      margin: 22px 0 10px 0;
-      font-size: 1.2rem;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    h3 {
-      margin: 18px 0 8px 0;
-      font-size: 1.02rem;
-    }
-
-    p { margin: 10px 0; }
-
-    .grid2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin: 14px 0;
-    }
-
-    .card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 14px;
-      background: #fcfcfc;
-    }
-
-    .card strong { display: block; margin-bottom: 4px; }
-
-    .callout {
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin: 14px 0;
-      border: 1px solid var(--border);
-      background: #f8fafc;
-    }
-
-    .callout.warn {
-      border-color: rgba(245, 158, 11, 0.45);
-      background: rgba(245, 158, 11, 0.12);
-    }
-
-    .callout.danger {
-      border-color: rgba(239, 68, 68, 0.45);
-      background: rgba(239, 68, 68, 0.10);
-    }
-
-    .callout.ok {
-      border-color: rgba(16, 185, 129, 0.45);
-      background: rgba(16, 185, 129, 0.10);
-    }
-
-    .callout .title {
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    ul, ol { margin: 10px 0 10px 20px; }
-    li { margin: 6px 0; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 12px 0;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    th {
-      background: linear-gradient(180deg, #111827, #1f2937);
-      color: #fff;
-      font-weight: 700;
-      padding: 12px 12px;
-      text-align: left;
-      font-size: 0.92rem;
-    }
-
-    td {
-      padding: 10px 12px;
-      border-top: 1px solid var(--border);
-      vertical-align: top;
-      font-size: 0.92rem;
-    }
-
-    tr:nth-child(even) td { background: #fafafa; }
-
-    .kbd {
-      font-family: var(--mono);
-      padding: 2px 6px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: #f9fafb;
-      color: #111827;
-      font-size: 0.9em;
-    }
-
-    .mono {
-      font-family: var(--mono);
-      font-size: 0.92rem;
-    }
-
-    .diagram {
-      font-family: var(--mono);
-      font-size: 12px;
-      line-height: 1.35;
-      background: #0b1020;
-      color: #d1fae5;
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 16px;
-      overflow-x: auto;
-      margin: 12px 0;
-      white-space: pre;
-    }
-
-    .code {
-      font-family: var(--mono);
-      font-size: 11.5px;
-      line-height: 1.45;
-      background: #111827;
-      color: #e5e7eb;
-      border-radius: 12px;
-      padding: 16px;
-      overflow: auto;
-      max-height: 520px;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.78rem;
-      border: 1px solid var(--border);
-      background: #fff;
-      color: var(--ink);
-    }
-
-    .badge.ok { border-color: rgba(16,185,129,0.6); color: #065f46; background: rgba(16,185,129,0.10); }
-    .badge.warn { border-color: rgba(245,158,11,0.7); color: #92400e; background: rgba(245,158,11,0.12); }
-    .badge.bad { border-color: rgba(239,68,68,0.7); color: #7f1d1d; background: rgba(239,68,68,0.12); }
-
-    .steps {
-      margin: 12px 0;
-    }
-
-    .step {
-      display: grid;
-      grid-template-columns: 40px 1fr;
-      gap: 12px;
-      align-items: start;
-      border: 1px solid var(--border);
-      background: #fcfcfc;
-      border-radius: 12px;
-      padding: 14px;
-      margin: 10px 0;
-    }
-
-    .step .n {
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      color: white;
-      background: linear-gradient(135deg, var(--accent2), #b91c1c);
-    }
-
-    .footer {
-      margin-top: 18px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.9rem;
-      text-align: center;
-    }
-
-    @media (max-width: 820px) {
-      .page { padding: 22px; }
-      .grid2 { grid-template-columns: 1fr; }
-    }
-
+    .container { max-width: 850px; margin: auto; padding: 20px; }
+    h1 { font-size: 1.8rem; color: var(--primary-dark); margin: 0 0 8px; }
+    h2 { font-size: 1.4rem; color: var(--primary); margin: 24px 0 12px; border-bottom: 2px solid var(--primary); padding-bottom: 4px; }
+    h3 { font-size: 1.1rem; margin: 16px 0 8px; color: var(--text); }
+    .header { text-align: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .header .version { background: linear-gradient(135deg, var(--rugged), #ff8f5a); color: white; padding: 6px 16px; border-radius: 20px; display: inline-block; font-weight: 600; margin-top: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .header .tagline { color: var(--text-light); font-size: 1rem; margin-top: 8px; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+    th, td { padding: 10px 12px; border: 1px solid var(--border); text-align: left; }
+    th { background: var(--primary); color: white; font-weight: 600; }
+    tr:nth-child(even) { background: #f5f5f5; }
+    .mono { font-family: "Consolas", "Courier New", monospace; font-size: 0.95em; background: #f0f0f0; padding: 2px 6px; border-radius: 4px; }
+    .callout { border-radius: 8px; padding: 16px; margin: 16px 0; }
+    .callout .title { font-weight: 700; margin-bottom: 8px; }
+    .callout.info { background: #e3f2fd; border-left: 4px solid var(--primary); }
+    .callout.ok { background: #e8f5e9; border-left: 4px solid var(--success); }
+    .callout.warn { background: #fff3e0; border-left: 4px solid var(--warning); }
+    .callout.danger { background: #ffebee; border-left: 4px solid var(--danger); }
+    .callout.rugged { background: linear-gradient(135deg, #fff5f0, #ffe8df); border-left: 4px solid var(--rugged); }
+    .diagram { background: #263238; color: #aed581; padding: 16px; border-radius: 8px; font-family: "Consolas", monospace; font-size: 12px; white-space: pre; overflow-x: auto; margin: 12px 0; }
+    .steps { margin: 12px 0; }
+    .step { display: flex; gap: 16px; margin: 16px 0; align-items: flex-start; }
+    .step .n { background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+    .step h3 { margin: 0 0 4px; }
+    .step p { margin: 0; color: var(--text-light); }
+    .page { page-break-inside: avoid; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px dashed var(--border); }
+    .footer { text-align: center; color: var(--text-light); font-size: 12px; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .kbd { background: #263238; color: white; padding: 3px 8px; border-radius: 4px; font-size: 12px; }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; margin: 2px; }
+    .badge.new { background: var(--success); color: white; }
+    .badge.rugged { background: var(--rugged); color: white; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+    .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
+    .feature-card h4 { margin: 0 0 6px; font-size: 0.95rem; }
+    .feature-card p { margin: 0; font-size: 0.85rem; color: var(--text-light); }
     @media print {
-      body { background: white; padding: 0; }
-      .page { box-shadow: none; margin: 0; border: none; border-radius: 0; page-break-after: always; }
-      .page:last-child { page-break-after: auto; }
-      .pill { background: white; }
+      body { font-size: 11pt; }
+      .page { page-break-after: always; border: none; }
+      .diagram { background: #f5f5f5 !important; color: #333 !important; border: 1px solid #ccc; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 12px; }
+      table { font-size: 12px; }
+      .diagram { font-size: 10px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
 
-    <!-- Page 1: Cover -->
-    <section class="page">
+    <!-- Header -->
+    <section class="header">
       <h1>Electric Parking Brake Controller</h1>
-      <p class="subtitle">ESP32 + BTS7960 + 12V Linear Actuator (350lb / 50mm) — Installation & Wiring Manual</p>
-      <p style="text-align:center; margin-top: 8px;">
-        <span class="pill">Version: Reliable v1.0</span>
-        <span class="pill">Generated: Dec 19, 2025</span>
-      </p>
+      <div class="version">v3.1 RUGGED</div>
+      <p class="tagline">Automotive-Grade Standalone Controller with Mobile Web UI</p>
+      <p style="font-size: 12px; color: var(--text-light);">Generated: January 2025</p>
+    </section>
 
-      <div class="callout danger">
-        <div class="title">Safety</div>
+    <!-- Page 1: Overview -->
+    <section class="page">
+      <h2>Overview</h2>
+      <p>This system uses an <strong>ESP32 microcontroller</strong> and a <strong>BTS7960 motor driver</strong> to control a 12V linear actuator for electric parking brake operation. It includes a built-in <strong>WiFi access point</strong> and <strong>mobile-optimized web interface</strong> for control and monitoring.</p>
+
+      <div class="callout rugged">
+        <div class="title">RUGGED Edition Features</div>
+        <p>Version 3.1 includes automotive-grade hardening for reliable operation in harsh vehicle environments:</p>
         <ul>
-          <li>This system controls a brake. Incorrect wiring or logic can cause unintended brake apply/release.</li>
-          <li>Fuse the 12V feed, use proper wire gauge, and test with the vehicle secured (wheels chocked).</li>
-          <li>Do not rely on this system until you complete full functional testing.</li>
+          <li><strong>Hardware watchdog</strong> - Auto-reboot on firmware freeze (8s timeout)</li>
+          <li><strong>Voltage spike filtering</strong> - 20-sample median filter rejects transients</li>
+          <li><strong>EMI-resistant inputs</strong> - Multi-sample validation with timing spread</li>
+          <li><strong>Auto-retry on errors</strong> - Transient failures retry automatically</li>
+          <li><strong>Self-healing WiFi</strong> - AP restarts if connection fails</li>
+          <li><strong>Memory corruption detection</strong> - Canary values continuously monitored</li>
+          <li><strong>Overvoltage protection</strong> - Won't operate above 16V</li>
         </ul>
       </div>
 
-      <h2>What this does</h2>
-      <ul>
-        <li><strong>Auto apply:</strong> when Park is engaged → actuator extends (applies brake).</li>
-        <li><strong>Safe release:</strong> when leaving Park → requires brake pedal input to retract (release).</li>
-        <li><strong>Manual override:</strong> hold a momentary button for ~3 seconds → toggles apply/release.</li>
-        <li><strong>Built-in actuator limits:</strong> actuator stops mechanically at end-of-travel.</li>
-      </ul>
-
-      <div class="grid2">
-        <div class="card">
-          <strong>Controller</strong>
-          ESP32 DevKit (Arduino / PlatformIO)
-        </div>
-        <div class="card">
-          <strong>Motor driver</strong>
-          BTS7960 (RPWM/LPWM + R_EN/L_EN)
-        </div>
-        <div class="card">
-          <strong>PWM</strong>
-          20kHz, 8-bit duty (quiet)
-        </div>
-        <div class="card">
-          <strong>Inputs</strong>
-          Park, Brake Pedal, Manual Button (all active-low)
-        </div>
+      <h3>Quick Start</h3>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><div><h3>Power Up</h3><p>Connect 12V to the system. LED blinks 3 times when ready.</p></div></div>
+        <div class="step"><div class="n">2</div><div><h3>Connect Phone</h3><p>Join WiFi network: <strong>ParkingBrake</strong> (password: <span class="mono">brake1234</span>)</p></div></div>
+        <div class="step"><div class="n">3</div><div><h3>Open Browser</h3><p>Navigate to <strong>http://192.168.4.1</strong></p></div></div>
+        <div class="step"><div class="n">4</div><div><h3>Control</h3><p>Tap the big button to toggle brake. Monitor voltage, current, and stats in real-time!</p></div></div>
       </div>
 
-      <h2>Reliability features (important)</h2>
+      <div class="callout info">
+        <div class="title">No Internet Required!</div>
+        <p>The ESP32 creates its own WiFi network. Works completely standalone - perfect for vehicles without connectivity.</p>
+      </div>
+
+      <h3>Operation Modes</h3>
       <table>
         <tr>
-          <th>Feature</th>
-          <th>Why it matters</th>
+          <th>Mode</th>
+          <th>Trigger</th>
+          <th>Action</th>
         </tr>
         <tr>
-          <td><span class="badge ok">Watchdog</span> hardware watchdog timer</td>
-          <td>Resets ESP32 if code ever hangs (noise, bugs, lockup).</td>
+          <td>Auto Apply</td>
+          <td>Park signal active (GPIO34 LOW)</td>
+          <td>Brake applies automatically</td>
         </tr>
         <tr>
-          <td><span class="badge ok">Debounce</span> input debouncing</td>
-          <td>Rejects contact bounce and electrical noise from vehicle wiring.</td>
+          <td>Safe Release</td>
+          <td>Park inactive + Brake pedal pressed</td>
+          <td>Brake releases (safety interlock)</td>
         </tr>
         <tr>
-          <td><span class="badge ok">Validation</span> multi-sample confirmation</td>
-          <td>Prevents false triggers on Park/Brake/Button.</td>
+          <td>Manual Override</td>
+          <td>Hold button 3 seconds</td>
+          <td>Toggle brake state</td>
         </tr>
         <tr>
-          <td><span class="badge ok">State save</span> remembers brake state</td>
-          <td>Restores last known brake state after power loss/reboot.</td>
-        </tr>
-        <tr>
-          <td><span class="badge warn">Timeout</span> actuator timeout protection</td>
-          <td>Stops motor if runtime exceeds the expected travel window.</td>
-        </tr>
-        <tr>
-          <td><span class="badge ok">Status LED</span> clear visual state</td>
-          <td>Solid ON = applied, OFF = released, blink = moving.</td>
+          <td>Web Control</td>
+          <td>Tap button in mobile UI</td>
+          <td>Toggle brake state</td>
         </tr>
       </table>
     </section>
 
-    <!-- Page 2: Quick Wiring Cheat Sheet -->
+    <!-- Page 2: Mobile Web UI -->
     <section class="page">
-      <h2>Quick wiring cheat sheet (1 page)</h2>
-      <p>Use this page for fast installation. All inputs are <strong>active LOW</strong> (switch to ground). PWM outputs are 20kHz.</p>
+      <h2>Mobile Web Interface</h2>
+      <p>The built-in web interface is optimized for iPhone and mobile devices with a beautiful dark theme.</p>
 
-      <div class="callout danger">
-        <div class="title">Critical safety items</div>
-        <ul>
-          <li>Fuse the 12V feed to the BTS7960 <strong>before</strong> powering anything.</li>
-          <li>All grounds must be common: BTS7960 B-, buck OUT-, and ESP32 GND.</li>
-          <li>Bench-test before vehicle install. Test with wheels chocked.</li>
-        </ul>
+      <h3>Features</h3>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>Real-Time Updates</h4>
+          <p>WebSocket connection provides instant feedback without page refresh</p>
+        </div>
+        <div class="feature-card">
+          <h4>Touch Optimized</h4>
+          <p>Large 140px button with visual feedback and animations</p>
+        </div>
+        <div class="feature-card">
+          <h4>Live Monitoring</h4>
+          <p>Voltage, current, and cycle count displayed in real-time</p>
+        </div>
+        <div class="feature-card">
+          <h4>Error Display</h4>
+          <p>Clear error messages with automatic recovery status</p>
+        </div>
       </div>
 
-      <h3>Power</h3>
+      <h3>Dashboard Information</h3>
       <table>
         <tr>
-          <th>From</th>
-          <th>To</th>
-          <th>Notes</th>
+          <th>Display</th>
+          <th>Description</th>
         </tr>
         <tr>
-          <td>Vehicle 12V</td>
-          <td>Fuse (start 10A) → BTS7960 B+</td>
-          <td>Use 14–16AWG. Fuse near source.</td>
+          <td>Voltage</td>
+          <td>Battery voltage (filtered, 20-sample median)</td>
         </tr>
         <tr>
-          <td>Vehicle ground</td>
-          <td>BTS7960 B-</td>
-          <td>Short, solid chassis ground.</td>
+          <td>Current</td>
+          <td>Motor current draw (filtered, 16-sample)</td>
         </tr>
         <tr>
-          <td>Vehicle 12V (after fuse)</td>
-          <td>Buck IN+</td>
-          <td>Power ESP32 from a stable buck converter.</td>
+          <td>Cycles</td>
+          <td>Total apply cycles since installation</td>
         </tr>
         <tr>
-          <td>Vehicle ground</td>
-          <td>Buck IN-</td>
-          <td>Common ground with BTS7960.</td>
+          <td>Boot Count</td>
+          <td>Number of system restarts (reliability metric)</td>
         </tr>
         <tr>
-          <td>Buck OUT+</td>
-          <td>ESP32 5V/Vin</td>
-          <td>Set buck to 5.0V before connecting.</td>
-        </tr>
-        <tr>
-          <td>Buck OUT-</td>
-          <td>ESP32 GND</td>
-          <td>Common ground reference.</td>
+          <td>Last Error</td>
+          <td>Most recent error code (if any)</td>
         </tr>
       </table>
 
-      <h3>Motor driver → actuator</h3>
+      <h3>WiFi Configuration</h3>
       <table>
         <tr>
-          <th>BTS7960</th>
-          <th>Connect to</th>
-          <th>Notes</th>
+          <th>Setting</th>
+          <th>Default</th>
+          <th>Customizable</th>
         </tr>
         <tr>
-          <td>M+</td>
-          <td>Actuator wire 1</td>
-          <td>Swap M+/M- if direction is reversed.</td>
+          <td>Network Name (SSID)</td>
+          <td class="mono">ParkingBrake</td>
+          <td>Yes - edit in code</td>
         </tr>
         <tr>
-          <td>M-</td>
-          <td>Actuator wire 2</td>
-          <td>Use 14–16AWG.</td>
+          <td>Password</td>
+          <td class="mono">brake1234</td>
+          <td>Yes - min 8 characters</td>
+        </tr>
+        <tr>
+          <td>IP Address</td>
+          <td class="mono">192.168.4.1</td>
+          <td>Fixed (AP default)</td>
+        </tr>
+        <tr>
+          <td>Web Port</td>
+          <td class="mono">80</td>
+          <td>Standard HTTP</td>
+        </tr>
+        <tr>
+          <td>WebSocket Port</td>
+          <td class="mono">81</td>
+          <td>Real-time updates</td>
         </tr>
       </table>
-
-      <h3>ESP32 ↔ BTS7960 signals</h3>
-      <table>
-        <tr>
-          <th>ESP32</th>
-          <th>BTS7960</th>
-          <th>Meaning</th>
-        </tr>
-        <tr>
-          <td class="mono">GPIO25</td>
-          <td class="mono">RPWM</td>
-          <td>Extend / Apply</td>
-        </tr>
-        <tr>
-          <td class="mono">GPIO26</td>
-          <td class="mono">LPWM</td>
-          <td>Retract / Release</td>
-        </tr>
-        <tr>
-          <td class="mono">GPIO27</td>
-          <td class="mono">R_EN</td>
-          <td>Enable</td>
-        </tr>
-        <tr>
-          <td class="mono">GPIO14</td>
-          <td class="mono">L_EN</td>
-          <td>Enable</td>
-        </tr>
-        <tr>
-          <td class="mono">5V/Vin</td>
-          <td class="mono">VCC</td>
-          <td>Logic power (check your BTS7960 board)</td>
-        </tr>
-        <tr>
-          <td class="mono">GND</td>
-          <td class="mono">GND</td>
-          <td>Common ground</td>
-        </tr>
-      </table>
-
-      <h3>Inputs (active LOW)</h3>
-      <table>
-        <tr>
-          <th>ESP32</th>
-          <th>Signal</th>
-          <th>How to wire</th>
-        </tr>
-        <tr>
-          <td class="mono">GPIO34</td>
-          <td>Park</td>
-          <td>Ground when in Park (otherwise floating/high via pull-up)</td>
-        </tr>
-        <tr>
-          <td class="mono">GPIO35</td>
-          <td>Brake pedal</td>
-          <td>Ground when brake pedal pressed</td>
-        </tr>
-        <tr>
-          <td class="mono">GPIO32</td>
-          <td>Manual override button</td>
-          <td>Momentary button to ground (hold ~3s to toggle)</td>
-        </tr>
-      </table>
-
-      <h3>Status LED</h3>
-      <table>
-        <tr>
-          <th>LED on GPIO2</th>
-          <th>Meaning</th>
-        </tr>
-        <tr>
-          <td>3 quick blinks at boot</td>
-          <td>Firmware running</td>
-        </tr>
-        <tr>
-          <td>Blinking</td>
-          <td>Actuator moving</td>
-        </tr>
-        <tr>
-          <td>Solid ON</td>
-          <td>Brake applied</td>
-        </tr>
-        <tr>
-          <td>OFF</td>
-          <td>Brake released</td>
-        </tr>
-      </table>
-
-      <h3>First test (bench)</h3>
-      <ol>
-        <li>Power the system. Confirm LED blinks 3 times.</li>
-        <li>Hold manual button ~3 seconds: actuator should move; LED blinks while moving.</li>
-        <li>Toggle again to confirm both directions.</li>
-        <li>Test Park input by temporarily grounding GPIO34: should apply.</li>
-        <li>Test release safety: unground Park and ground Brake input (GPIO35): should release.</li>
-      </ol>
 
       <div class="callout ok">
-        <div class="title">Tune (only if needed)</div>
-        <p>In <span class="mono">HandbrakeController/HandbrakeController.ino</span> adjust:</p>
-        <ul>
-          <li><span class="mono">apply_ms</span> and <span class="mono">release_ms</span> (travel timing)</li>
-          <li><span class="mono">duty</span> (power level 0–255)</li>
-          <li><span class="mono">HOLD_TIME_MS</span> (manual hold duration)</li>
-        </ul>
+        <div class="title">To Customize WiFi Name</div>
+        <p>Edit these lines in <span class="mono">HandbrakeController_v3.ino</span>:</p>
+        <pre style="background: #f5f5f5; padding: 12px; border-radius: 6px; margin: 8px 0;">const char* AP_SSID     = "ParkingBrake";    // Your custom name
+const char* AP_PASSWORD = "brake1234";        // Min 8 characters</pre>
       </div>
     </section>
 
-    <!-- Page 3: Parts & Power -->
+    <!-- Page 3: Wiring Diagram -->
     <section class="page">
-      <h2>Parts list</h2>
-      <table>
-        <tr>
-          <th>Item</th>
-          <th>Recommended</th>
-          <th>Notes</th>
-        </tr>
-        <tr>
-          <td>ESP32 DevKit</td>
-          <td>1</td>
-          <td>Use a genuine board if possible for stability.</td>
-        </tr>
-        <tr>
-          <td>BTS7960 motor driver</td>
-          <td>1</td>
-          <td>RPWM/LPWM + R_EN/L_EN type module.</td>
-        </tr>
-        <tr>
-          <td>12V linear actuator</td>
-          <td>1</td>
-          <td>350lb / 50mm stroke, built-in limit switches.</td>
-        </tr>
-        <tr>
-          <td>Momentary push button</td>
-          <td>1</td>
-          <td>One side to GPIO32, other side to GND.</td>
-        </tr>
-        <tr>
-          <td>Inline fuse + holder</td>
-          <td>1</td>
-          <td>Start with 10A (adjust based on actuator draw).</td>
-        </tr>
-        <tr>
-          <td>12V→5V buck converter</td>
-          <td>1</td>
-          <td>3A minimum, stable output (avoid cheap/noisy units).</td>
-        </tr>
-        <tr>
-          <td>Wire</td>
-          <td>-</td>
-          <td>Motor: 14–16AWG. Signals: 20–22AWG.</td>
-        </tr>
-      </table>
+      <h2>Complete Wiring Diagram</h2>
+      <div class="diagram">VEHICLE 12V (+)
+  |
+  +-- [FUSE 10A] --+--------------------------------+------------------------+
+                   |                                |                        |
+               5V Buck                          BTS7960                   ESP32
+               Converter                   +----------------+          DevKit
+                   |                       | B+   B-        |             |
+              OUT+ -------- 5V ----------> | VCC  GND       |<--- GND ---+
+              OUT- -------- GND           | RPWM LPWM      |<--- GPIO25 (RPWM)
+                   |                       | R_EN L_EN      |<--- GPIO26 (LPWM)
+                   +-- GND (common) ------+| M+   M-        |<--- GPIO27 (R_EN)
+                                          +--+----+----+---+<--- GPIO14 (L_EN)
+                                             |    |
+                                             +----+--- Linear Actuator
+                                                       (350lb / 50mm)
+
+OPTIONAL SENSORS:
+                                          
+  +-- Voltage Divider --+                    +-- ACS712-30A --+
+  |    47K     10K      |                    |   Current      |
+  +--[===]--+--[===]--GND                    |   Sensor       |
+            |                                +-------+--------+
+     GPIO36 (ADC)                                    |
+            ^                                    GPIO33 (ADC)
+            |                                        ^
+         12V IN                                   In-line with
+     (after fuse)                                 motor power
+
+INPUTS (Active LOW - connect to GND when active):
+
+  GPIO34 <----[ Park Signal ]----> GND when in Park
+  GPIO35 <----[ Brake Pedal ]----> GND when pressed  
+  GPIO32 <----[  Button     ]----> Momentary to GND
+
+LED:
+  GPIO2  ----[ Status LED ]----> (usually built-in on ESP32)</div>
 
       <div class="callout warn">
-        <div class="title">Power & grounding best practices</div>
+        <div class="title">Wiring Best Practices</div>
         <ul>
-          <li>Fuse the 12V feed as close to the battery/source as practical.</li>
-          <li>Use a clean chassis ground for B- and buck converter ground.</li>
-          <li>Keep motor power wiring away from signal wires (reduce noise).</li>
-          <li>If the ESP32 resets when the actuator starts, upgrade the buck converter and add bulk capacitance (e.g., 470–1000µF) on the 5V rail.</li>
+          <li>Use <strong>14-16 AWG</strong> wire for motor power connections</li>
+          <li>Use <strong>20-22 AWG</strong> wire for signal connections</li>
+          <li>Keep motor wires <strong>twisted and separated</strong> from signal wires</li>
+          <li>Use a <strong>common ground</strong> between BTS7960, buck converter, and ESP32</li>
+          <li>Mount ESP32 in a <strong>shielded enclosure</strong> to reduce EMI</li>
         </ul>
       </div>
-
-      <h2>BTS7960 pinout</h2>
-      <table>
-        <tr>
-          <th>BTS7960 Pin</th>
-          <th>Connect to</th>
-          <th>Notes</th>
-        </tr>
-        <tr>
-          <td>B+</td>
-          <td>12V (after fuse)</td>
-          <td>Use motor-grade wire gauge.</td>
-        </tr>
-        <tr>
-          <td>B-</td>
-          <td>Chassis ground</td>
-          <td>Short, solid ground.</td>
-        </tr>
-        <tr>
-          <td>M+ / M-</td>
-          <td>Actuator motor wires</td>
-          <td>If direction is reversed, swap M+ and M-.</td>
-        </tr>
-        <tr>
-          <td>RPWM</td>
-          <td>ESP32 GPIO25</td>
-          <td>Extend / Apply</td>
-        </tr>
-        <tr>
-          <td>LPWM</td>
-          <td>ESP32 GPIO26</td>
-          <td>Retract / Release</td>
-        </tr>
-        <tr>
-          <td>R_EN</td>
-          <td>ESP32 GPIO27</td>
-          <td>Enable</td>
-        </tr>
-        <tr>
-          <td>L_EN</td>
-          <td>ESP32 GPIO14</td>
-          <td>Enable</td>
-        </tr>
-        <tr>
-          <td>VCC</td>
-          <td>5V (ESP32 Vin/5V)</td>
-          <td>Logic power. Confirm your module requirements.</td>
-        </tr>
-        <tr>
-          <td>GND</td>
-          <td>ESP32 GND</td>
-          <td>Must share ground with buck converter + BTS7960 B-.</td>
-        </tr>
-      </table>
     </section>
 
-    <!-- Page 3: Wiring -->
+    <!-- Page 4: Pin Reference -->
     <section class="page">
-      <h2>ESP32 pin map</h2>
+      <h2>ESP32 Pin Reference</h2>
       <table>
         <tr>
-          <th>ESP32</th>
-          <th>Purpose</th>
+          <th>GPIO</th>
+          <th>Function</th>
           <th>Direction</th>
           <th>Notes</th>
         </tr>
         <tr>
           <td class="mono">GPIO25</td>
-          <td>RPWM (extend/apply)</td>
+          <td>RPWM (Extend/Apply)</td>
           <td>Output</td>
-          <td>PWM @ 20kHz</td>
+          <td>PWM @ 20kHz, soft-start ramping</td>
         </tr>
         <tr>
           <td class="mono">GPIO26</td>
-          <td>LPWM (retract/release)</td>
+          <td>LPWM (Retract/Release)</td>
           <td>Output</td>
-          <td>PWM @ 20kHz</td>
+          <td>PWM @ 20kHz, soft-start ramping</td>
         </tr>
         <tr>
           <td class="mono">GPIO27</td>
-          <td>R_EN</td>
+          <td>R_EN (Right Enable)</td>
           <td>Output</td>
-          <td>Set HIGH to enable driver</td>
+          <td>HIGH to enable driver</td>
         </tr>
         <tr>
           <td class="mono">GPIO14</td>
-          <td>L_EN</td>
+          <td>L_EN (Left Enable)</td>
           <td>Output</td>
-          <td>Set HIGH to enable driver</td>
+          <td>HIGH to enable driver</td>
         </tr>
         <tr>
           <td class="mono">GPIO34</td>
-          <td>Park input</td>
+          <td>Park Signal</td>
           <td>Input</td>
-          <td>Active LOW (ground = active)</td>
+          <td>Active LOW (INPUT_PULLUP)</td>
         </tr>
         <tr>
           <td class="mono">GPIO35</td>
-          <td>Brake pedal input</td>
+          <td>Brake Pedal</td>
           <td>Input</td>
-          <td>Active LOW (ground = pressed)</td>
+          <td>Active LOW (INPUT_PULLUP)</td>
         </tr>
         <tr>
           <td class="mono">GPIO32</td>
-          <td>Manual override button</td>
+          <td>Manual Override Button</td>
           <td>Input</td>
-          <td>Active LOW (hold 3s)</td>
+          <td>Hold 3 seconds to toggle</td>
         </tr>
         <tr>
           <td class="mono">GPIO2</td>
           <td>Status LED</td>
           <td>Output</td>
-          <td>Most boards have a built-in LED here</td>
+          <td>Built-in on most ESP32 boards</td>
+        </tr>
+        <tr style="background: #e8f5e9;">
+          <td class="mono">GPIO33</td>
+          <td>Current Sensor <span class="badge new">NEW</span></td>
+          <td>Input (ADC)</td>
+          <td>ACS712-30A output (optional)</td>
+        </tr>
+        <tr style="background: #e8f5e9;">
+          <td class="mono">GPIO36</td>
+          <td>Voltage Monitor <span class="badge new">NEW</span></td>
+          <td>Input (ADC)</td>
+          <td>47K+10K divider (optional)</td>
+        </tr>
+      </table>
+
+      <h3>BTS7960 Motor Driver Pinout</h3>
+      <table>
+        <tr>
+          <th>BTS7960</th>
+          <th>Connect To</th>
+          <th>Notes</th>
+        </tr>
+        <tr>
+          <td>B+</td>
+          <td>12V (after fuse)</td>
+          <td>Motor power supply</td>
+        </tr>
+        <tr>
+          <td>B-</td>
+          <td>Chassis Ground</td>
+          <td>Heavy gauge ground</td>
+        </tr>
+        <tr>
+          <td>M+ / M-</td>
+          <td>Actuator wires</td>
+          <td>Swap if direction reversed</td>
+        </tr>
+        <tr>
+          <td>RPWM</td>
+          <td>ESP32 GPIO25</td>
+          <td>Extend/Apply PWM</td>
+        </tr>
+        <tr>
+          <td>LPWM</td>
+          <td>ESP32 GPIO26</td>
+          <td>Retract/Release PWM</td>
+        </tr>
+        <tr>
+          <td>R_EN</td>
+          <td>ESP32 GPIO27</td>
+          <td>Right half enable</td>
+        </tr>
+        <tr>
+          <td>L_EN</td>
+          <td>ESP32 GPIO14</td>
+          <td>Left half enable</td>
+        </tr>
+        <tr>
+          <td>VCC</td>
+          <td>5V (ESP32 Vin)</td>
+          <td>Logic power</td>
+        </tr>
+        <tr>
+          <td>GND</td>
+          <td>ESP32 GND</td>
+          <td>Common ground</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Page 5: Optional Sensors -->
+    <section class="page">
+      <h2>Optional Sensors (Recommended)</h2>
+
+      <div class="callout info">
+        <div class="title">Why Add Sensors?</div>
+        <p>The current and voltage sensors enable advanced features like stall detection, low voltage protection, and diagnostics. While optional, they significantly improve reliability and safety.</p>
+      </div>
+
+      <h3>Voltage Monitoring (GPIO36)</h3>
+      <p>Monitor battery voltage to prevent operation when voltage is too low (&lt;11V) or too high (&gt;16V).</p>
+      <div class="diagram">12V (after fuse)
+      |
+      +--[47K resistor]--+--[10K resistor]--GND
+                         |
+                      GPIO36
+                   (max ~2.8V)</div>
+      <table>
+        <tr>
+          <th>Component</th>
+          <th>Value</th>
+          <th>Notes</th>
+        </tr>
+        <tr>
+          <td>R1 (high side)</td>
+          <td>47K ohm</td>
+          <td>1/4 watt, 1% tolerance preferred</td>
+        </tr>
+        <tr>
+          <td>R2 (low side)</td>
+          <td>10K ohm</td>
+          <td>1/4 watt, 1% tolerance preferred</td>
+        </tr>
+        <tr>
+          <td>Output range</td>
+          <td>0-2.8V</td>
+          <td>At 16V input = ~2.8V output</td>
+        </tr>
+      </table>
+
+      <h3>Current Sensing (GPIO33)</h3>
+      <p>Detect actuator stall condition and motor current for diagnostics.</p>
+      <table>
+        <tr>
+          <th>Component</th>
+          <th>Specification</th>
+          <th>Notes</th>
+        </tr>
+        <tr>
+          <td>Module</td>
+          <td>ACS712-30A</td>
+          <td>Hall-effect current sensor</td>
+        </tr>
+        <tr>
+          <td>Wiring</td>
+          <td>In-line with M+ or M-</td>
+          <td>Senses motor current</td>
+        </tr>
+        <tr>
+          <td>VCC</td>
+          <td>5V</td>
+          <td>From buck converter or ESP32</td>
+        </tr>
+        <tr>
+          <td>OUT</td>
+          <td>GPIO33</td>
+          <td>Analog output (centered at 2.5V)</td>
+        </tr>
+        <tr>
+          <td>GND</td>
+          <td>Common ground</td>
+          <td>Share with ESP32</td>
         </tr>
       </table>
 
       <div class="callout ok">
-        <div class="title">Input behavior</div>
-        <p>All inputs are configured as <strong>INPUT_PULLUP</strong>, meaning:</p>
+        <div class="title">RUGGED Filtering</div>
+        <p>The v3.1 firmware applies heavy filtering to sensor readings:</p>
         <ul>
-          <li>Inactive = HIGH (internal pull-up)</li>
-          <li>Active = LOW (switch to ground)</li>
+          <li><strong>Voltage:</strong> 20-sample median filter + 0.5V hysteresis</li>
+          <li><strong>Current:</strong> 16-sample averaging filter</li>
+          <li>This rejects EMI spikes and transients common in vehicles</li>
         </ul>
       </div>
-
-      <h2>Wiring diagram (text)</h2>
-      <div class="diagram">VEHICLE 12V
-  |
-  +-- [FUSE 10A] --+--------------------------+--------------------+
-                  |                          |                    |
-                  |                      BTS7960                 |
-                  |                 +----------------+           |
-                  |                 | B+   B-        |           |
-                  |                 | M+   M-        |---- Actuator
-                  |                 | RPWM LPWM      |
-                  |                 | R_EN L_EN      |
-                  |                 | VCC  GND       |
-                  |                 +--+---+----+----+
-                  |                    |   |    |
-                  |                    |   |    +--- ESP32 GND (common)
-                  |                    |   +-------- ESP32 5V/Vin (logic VCC)
-                  |                    +------------ 12V IN (B+)
-                  |
-              5V Buck Converter
-                  +---- OUT+ --> ESP32 5V/Vin
-                  +---- OUT- --> ESP32 GND
-
-ESP32 Signals:
-  GPIO25 -> RPWM (extend/apply)
-  GPIO26 -> LPWM (retract/release)
-  GPIO27 -> R_EN
-  GPIO14 -> L_EN
-
-Inputs (active LOW):
-  GPIO34 <- Park signal (ground when in Park)
-  GPIO35 <- Brake pedal (ground when pressed)
-  GPIO32 <- Manual button (momentary to GND)
-
-LED:
-  GPIO2  -> Status LED (optional / usually built-in)
-</div>
     </section>
 
-    <!-- Page 4: Operation -->
+    <!-- Page 6: Error Codes -->
     <section class="page">
-      <h2>Operation</h2>
+      <h2>Error Codes &amp; Diagnostics</h2>
+
+      <h3>Error Code Reference</h3>
       <table>
         <tr>
-          <th>Event</th>
-          <th>Required inputs</th>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Description</th>
           <th>Action</th>
         </tr>
         <tr>
-          <td>Shift into Park</td>
-          <td>Park = active</td>
-          <td>Apply (extend actuator)</td>
+          <td class="mono">E01</td>
+          <td>Low Voltage</td>
+          <td>Battery below 11V</td>
+          <td>Check battery, charge, or check connections</td>
         </tr>
         <tr>
-          <td>Shift out of Park</td>
-          <td>Brake pedal = pressed</td>
-          <td>Release (retract actuator)</td>
+          <td class="mono">E02</td>
+          <td>High Voltage</td>
+          <td>Battery above 16V</td>
+          <td>Check alternator/charging system</td>
         </tr>
         <tr>
-          <td>Manual override</td>
-          <td>Hold button 3 seconds</td>
-          <td>Toggle apply/release</td>
+          <td class="mono">E03</td>
+          <td>Overcurrent</td>
+          <td>Motor current exceeded 25A</td>
+          <td>Check for mechanical binding</td>
+        </tr>
+        <tr>
+          <td class="mono">E04</td>
+          <td>Stall Detected</td>
+          <td>Motor stalled (high current, no movement)</td>
+          <td>Check actuator travel, obstacles</td>
+        </tr>
+        <tr>
+          <td class="mono">E05</td>
+          <td>Timeout</td>
+          <td>Operation exceeded safety timeout</td>
+          <td>Adjust timing or check mechanics</td>
+        </tr>
+        <tr>
+          <td class="mono">E06</td>
+          <td>Memory Corruption</td>
+          <td>RAM corruption detected (canary check)</td>
+          <td>System auto-reboots</td>
+        </tr>
+        <tr>
+          <td class="mono">E07</td>
+          <td>WiFi Failed</td>
+          <td>Access point failed to start</td>
+          <td>System auto-restarts WiFi</td>
+        </tr>
+        <tr>
+          <td class="mono">E08</td>
+          <td>NVS Error</td>
+          <td>Settings storage checksum failed</td>
+          <td>Settings reset to defaults</td>
         </tr>
       </table>
 
-      <h2>Status LED</h2>
+      <h3>LED Status Patterns</h3>
       <table>
         <tr>
-          <th>LED</th>
+          <th>Pattern</th>
           <th>Meaning</th>
         </tr>
         <tr>
-          <td>3 short blinks at boot</td>
-          <td>ESP32 powered and firmware running</td>
+          <td>3 blinks at boot</td>
+          <td>System ready, firmware running</td>
         </tr>
         <tr>
-          <td>Fast blink</td>
+          <td>Fast blinking</td>
           <td>Actuator is moving</td>
         </tr>
         <tr>
@@ -789,137 +592,477 @@ LED:
           <td>OFF</td>
           <td>Brake released</td>
         </tr>
+        <tr>
+          <td>Very fast blink (5 Hz)</td>
+          <td>Error condition active</td>
+        </tr>
       </table>
 
-      <div class="callout warn">
-        <div class="title">Important: timing vs limit switches</div>
-        <p>Your actuator has built-in limits, which is good, but the code still uses timed runs.</p>
+      <h3>Statistics (viewable in Web UI)</h3>
+      <table>
+        <tr>
+          <th>Statistic</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>Cycle Count</td>
+          <td>Total apply operations since installation</td>
+        </tr>
+        <tr>
+          <td>Boot Count</td>
+          <td>Number of system restarts (high = potential issue)</td>
+        </tr>
+        <tr>
+          <td>Retry Count</td>
+          <td>Times operations auto-retried due to transient errors</td>
+        </tr>
+        <tr>
+          <td>Last Error</td>
+          <td>Most recent error code (0 = no error)</td>
+        </tr>
+        <tr>
+          <td>Uptime</td>
+          <td>Time since last boot</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Page 7: Parts List -->
+    <section class="page">
+      <h2>Parts List</h2>
+      <h3>Required Components</h3>
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Specification</th>
+          <th>Notes</th>
+        </tr>
+        <tr>
+          <td>ESP32 DevKit</td>
+          <td>1</td>
+          <td>ESP32-WROOM-32 or similar</td>
+          <td>Use genuine board for stability</td>
+        </tr>
+        <tr>
+          <td>BTS7960 Motor Driver</td>
+          <td>1</td>
+          <td>43A H-Bridge module</td>
+          <td>RPWM/LPWM + R_EN/L_EN type</td>
+        </tr>
+        <tr>
+          <td>Linear Actuator</td>
+          <td>1</td>
+          <td>12V, 350lb, 50mm stroke</td>
+          <td>Must have built-in limit switches</td>
+        </tr>
+        <tr>
+          <td>Buck Converter</td>
+          <td>1</td>
+          <td>12V to 5V, 3A+ output</td>
+          <td>Quality unit, avoid cheap noisy ones</td>
+        </tr>
+        <tr>
+          <td>Fuse + Holder</td>
+          <td>1</td>
+          <td>10A inline blade fuse</td>
+          <td>Adjust based on actuator current</td>
+        </tr>
+        <tr>
+          <td>Push Button</td>
+          <td>1</td>
+          <td>Momentary, normally open</td>
+          <td>For manual override</td>
+        </tr>
+        <tr>
+          <td>Wire (motor)</td>
+          <td>-</td>
+          <td>14-16 AWG</td>
+          <td>For power connections</td>
+        </tr>
+        <tr>
+          <td>Wire (signal)</td>
+          <td>-</td>
+          <td>20-22 AWG</td>
+          <td>For control signals</td>
+        </tr>
+      </table>
+
+      <h3>Optional Components (Recommended)</h3>
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Purpose</th>
+        </tr>
+        <tr>
+          <td>ACS712-30A Module</td>
+          <td>1</td>
+          <td>Current sensing / stall detection</td>
+        </tr>
+        <tr>
+          <td>47K Resistor (1%)</td>
+          <td>1</td>
+          <td>Voltage divider (high side)</td>
+        </tr>
+        <tr>
+          <td>10K Resistor (1%)</td>
+          <td>1</td>
+          <td>Voltage divider (low side)</td>
+        </tr>
+        <tr>
+          <td>470-1000uF Capacitor</td>
+          <td>1</td>
+          <td>5V rail stabilization</td>
+        </tr>
+        <tr>
+          <td>Ferrite Beads</td>
+          <td>2</td>
+          <td>EMI suppression on motor leads</td>
+        </tr>
+        <tr>
+          <td>Project Enclosure</td>
+          <td>1</td>
+          <td>Protection and EMI shielding</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- Page 8: Installation -->
+    <section class="page">
+      <h2>Installation Checklist</h2>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><div><h3>Bench Test First</h3><p>Test complete system on workbench with 12V supply before vehicle installation.</p></div></div>
+        <div class="step"><div class="n">2</div><div><h3>Install Arduino Libraries</h3><p>In Arduino IDE: Sketch > Include Library > Manage Libraries. Install <strong>WebSockets</strong> and <strong>ArduinoJson</strong>.</p></div></div>
+        <div class="step"><div class="n">3</div><div><h3>Upload Firmware</h3><p>Open <span class="mono">HandbrakeController_v3.ino</span>, select ESP32 Dev Module, upload.</p></div></div>
+        <div class="step"><div class="n">4</div><div><h3>Test WiFi Connection</h3><p>Connect phone to <strong>ParkingBrake</strong> WiFi, open <strong>http://192.168.4.1</strong>.</p></div></div>
+        <div class="step"><div class="n">5</div><div><h3>Mount Actuator</h3><p>Secure actuator with full travel clearance. No binding allowed.</p></div></div>
+        <div class="step"><div class="n">6</div><div><h3>Fuse the 12V</h3><p>Install inline fuse close to battery/power source.</p></div></div>
+        <div class="step"><div class="n">7</div><div><h3>Wire Power</h3><p>Connect 12V > fuse > BTS7960 B+, B- to chassis ground.</p></div></div>
+        <div class="step"><div class="n">8</div><div><h3>Wire Buck Converter</h3><p>12V in, 5V out to ESP32 Vin, share common ground.</p></div></div>
+        <div class="step"><div class="n">9</div><div><h3>Wire Control Signals</h3><p>Connect GPIO25/26/27/14 to BTS7960. Keep away from motor wires.</p></div></div>
+        <div class="step"><div class="n">10</div><div><h3>Wire Inputs</h3><p>Park, brake pedal, button - all connect to ground when active.</p></div></div>
+        <div class="step"><div class="n">11</div><div><h3>Wire Sensors (Optional)</h3><p>Install voltage divider on GPIO36, ACS712 on GPIO33.</p></div></div>
+        <div class="step"><div class="n">12</div><div><h3>Vehicle Test</h3><p>With vehicle secured: test Park apply, brake+release, manual override, web control.</p></div></div>
+      </div>
+    </section>
+
+    <!-- Page 9: Tuning -->
+    <section class="page">
+      <h2>Tuning &amp; Configuration</h2>
+
+      <h3>Timing Parameters</h3>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td class="mono">apply_ms</td>
+          <td>2500</td>
+          <td>Apply (extend) run time in milliseconds</td>
+        </tr>
+        <tr>
+          <td class="mono">release_ms</td>
+          <td>1800</td>
+          <td>Release (retract) run time in milliseconds</td>
+        </tr>
+        <tr>
+          <td class="mono">duty</td>
+          <td>220</td>
+          <td>PWM duty cycle (0-255)</td>
+        </tr>
+        <tr>
+          <td class="mono">HOLD_TIME_MS</td>
+          <td>3000</td>
+          <td>Manual button hold time to trigger</td>
+        </tr>
+        <tr>
+          <td class="mono">ACTUATOR_TIMEOUT_MS</td>
+          <td>5000</td>
+          <td>Safety timeout for any operation</td>
+        </tr>
+      </table>
+
+      <h3>Voltage Thresholds</h3>
+      <table>
+        <tr>
+          <th>Threshold</th>
+          <th>Value</th>
+          <th>Effect</th>
+        </tr>
+        <tr>
+          <td>Low Voltage Cutoff</td>
+          <td>11.0V</td>
+          <td>Operations blocked, error E01</td>
+        </tr>
+        <tr>
+          <td>Low Voltage Resume</td>
+          <td>11.5V</td>
+          <td>Operations resume (0.5V hysteresis)</td>
+        </tr>
+        <tr>
+          <td>High Voltage Cutoff</td>
+          <td>16.0V</td>
+          <td>Operations blocked, error E02</td>
+        </tr>
+        <tr>
+          <td>High Voltage Resume</td>
+          <td>15.5V</td>
+          <td>Operations resume (0.5V hysteresis)</td>
+        </tr>
+      </table>
+
+      <h3>Current Thresholds</h3>
+      <table>
+        <tr>
+          <th>Threshold</th>
+          <th>Value</th>
+          <th>Effect</th>
+        </tr>
+        <tr>
+          <td>Overcurrent Limit</td>
+          <td>25A</td>
+          <td>Immediate stop, error E03</td>
+        </tr>
+        <tr>
+          <td>Stall Detection</td>
+          <td>20A + no movement</td>
+          <td>Stop, error E04</td>
+        </tr>
+        <tr>
+          <td>Normal Operation</td>
+          <td>5-15A</td>
+          <td>Typical range during movement</td>
+        </tr>
+      </table>
+
+      <div class="callout info">
+        <div class="title">Tuning Tips</div>
         <ul>
-          <li>Keep <span class="mono">apply_ms</span> and <span class="mono">release_ms</span> close to the actual travel time to reduce heat.</li>
-          <li>If you set timings longer than needed, the actuator may sit stalled at the end stop until time expires.</li>
-          <li>The firmware includes an absolute safety cap <span class="mono">ACTUATOR_TIMEOUT_MS</span> to avoid indefinite runs.</li>
+          <li>Set timing slightly longer than actual travel time</li>
+          <li>If actuator stalls at end of travel, reduce timing</li>
+          <li>Lower <span class="mono">duty</span> reduces force but extends motor life</li>
+          <li>Higher <span class="mono">duty</span> increases force but creates more heat</li>
         </ul>
       </div>
     </section>
 
-    <!-- Page 5: Installation steps -->
-    <section class="page">
-      <h2>Installation checklist</h2>
-      <div class="steps">
-        <div class="step"><div class="n">1</div><div><h3>Bench test first</h3><p>Test the actuator + BTS7960 + ESP32 on a bench with a 12V supply before installing in the vehicle.</p></div></div>
-        <div class="step"><div class="n">2</div><div><h3>Mount actuator securely</h3><p>Ensure full travel without binding and that the lever/cable returns cleanly.</p></div></div>
-        <div class="step"><div class="n">3</div><div><h3>Fuse the 12V feed</h3><p>Install an inline fuse (start at 10A) on the BTS7960 B+ feed.</p></div></div>
-        <div class="step"><div class="n">4</div><div><h3>Wire power and grounds</h3><p>Keep grounds solid and common between BTS7960, buck converter, and ESP32.</p></div></div>
-        <div class="step"><div class="n">5</div><div><h3>Wire signals</h3><p>Connect GPIO25/26/27/14 to the driver. Keep these wires short and away from motor leads.</p></div></div>
-        <div class="step"><div class="n">6</div><div><h3>Wire inputs (active-low)</h3><p>Park, Brake Pedal, Manual Button should connect to ground when active.</p></div></div>
-        <div class="step"><div class="n">7</div><div><h3>Upload firmware and tune</h3><p>Flash the sketch and adjust <span class="mono">apply_ms</span>/<span class="mono">release_ms</span> and <span class="mono">duty</span> if needed.</p></div></div>
-        <div class="step"><div class="n">8</div><div><h3>Vehicle test (secured)</h3><p>Test Park apply, safe release (with brake pedal), and manual override. Repeat until consistent.</p></div></div>
-      </div>
-
-      <div class="callout ok">
-        <div class="title">Recommended initial tuning</div>
-        <table>
-          <tr><th>Setting</th><th>Default</th><th>Meaning</th></tr>
-          <tr><td class="mono">apply_ms</td><td>2500</td><td>Run time to apply (extend)</td></tr>
-          <tr><td class="mono">release_ms</td><td>1800</td><td>Run time to release (retract)</td></tr>
-          <tr><td class="mono">duty</td><td>220</td><td>PWM power level (0–255)</td></tr>
-          <tr><td class="mono">HOLD_TIME_MS</td><td>3000</td><td>Manual hold time to trigger</td></tr>
-        </table>
-      </div>
-    </section>
-
-    <!-- Page 6: Troubleshooting -->
+    <!-- Page 10: Troubleshooting -->
     <section class="page">
       <h2>Troubleshooting</h2>
       <table>
         <tr>
           <th>Symptom</th>
-          <th>Likely cause</th>
-          <th>Fix</th>
+          <th>Likely Cause</th>
+          <th>Solution</th>
         </tr>
         <tr>
-          <td>ESP32 resets when actuator starts</td>
-          <td>5V supply droop / electrical noise</td>
-          <td>Better buck converter, thicker wiring, add capacitance on 5V, separate grounds carefully.</td>
+          <td>ESP32 resets when actuator runs</td>
+          <td>5V supply voltage droop or noise</td>
+          <td>Better buck converter, add 470-1000uF capacitor on 5V, heavier ground wire</td>
         </tr>
         <tr>
-          <td>Actuator moves the wrong way</td>
-          <td>M+ / M- swapped</td>
-          <td>Swap actuator leads on BTS7960 M+ and M-.</td>
+          <td>Actuator moves wrong direction</td>
+          <td>M+ and M- swapped</td>
+          <td>Swap actuator leads on BTS7960</td>
         </tr>
         <tr>
-          <td>Won’t release when leaving Park</td>
-          <td>Brake input not seen (active-low mismatch)</td>
-          <td>Verify brake signal grounds when pressed. Confirm with a multimeter.</td>
+          <td>Won't release when leaving Park</td>
+          <td>Brake pedal input not detected</td>
+          <td>Verify brake signal grounds when pressed (active LOW)</td>
         </tr>
         <tr>
           <td>Random apply/release events</td>
-          <td>Noisy inputs</td>
-          <td>Twist/route signal wiring away from motor leads. Ensure proper ground. Consider shielded cable for inputs.</td>
+          <td>EMI on input wires</td>
+          <td>Route signal wires away from motor leads, use shielded cable</td>
         </tr>
         <tr>
-          <td>Manual override triggers accidentally</td>
-          <td>Button wiring bouncing/noise</td>
-          <td>Confirm button is momentary-to-ground. Hold-time and validation already reduce this.</td>
+          <td>Can't connect to WiFi</td>
+          <td>Phone too far, or WiFi interference</td>
+          <td>Move closer, ensure AP started (check Serial Monitor)</td>
+        </tr>
+        <tr>
+          <td>Web page won't load</td>
+          <td>WebSocket not connecting</td>
+          <td>Refresh page, check phone is on ParkingBrake network</td>
+        </tr>
+        <tr>
+          <td>Voltage shows wrong value</td>
+          <td>Voltage divider incorrect</td>
+          <td>Verify 47K and 10K resistor values</td>
+        </tr>
+        <tr>
+          <td>Current shows 0 or wrong</td>
+          <td>ACS712 not connected or wrong polarity</td>
+          <td>Check ACS712 wiring, ensure in-line with motor</td>
+        </tr>
+        <tr>
+          <td>System reboots frequently</td>
+          <td>Watchdog triggering or power issue</td>
+          <td>Check boot count in web UI, verify power supply</td>
         </tr>
       </table>
 
-      <h2>Serial monitor</h2>
-      <p>Open Arduino Serial Monitor at <strong>115200 baud</strong> to view state and debug logs.</p>
-
       <div class="callout warn">
-        <div class="title">If you want it quieter / cleaner</div>
+        <div class="title">Serial Monitor Debug</div>
+        <p>Connect ESP32 via USB and open Serial Monitor at <strong>115200 baud</strong> to see detailed diagnostic messages including:</p>
         <ul>
-          <li>Use ferrite beads on the actuator leads and/or add a snubber if your actuator is noisy.</li>
-          <li>Keep motor wiring short and twisted if possible.</li>
-          <li>Mount the ESP32 + buck converter in a shielded enclosure.</li>
+          <li>Boot sequence and version info</li>
+          <li>WiFi AP status and IP address</li>
+          <li>Input state changes</li>
+          <li>Operation start/stop events</li>
+          <li>Error conditions and recovery</li>
         </ul>
-      </div>
-
-      <div class="footer">
-        Electric Parking Brake Controller — Wiring Manual<br />
-        Tip: open this HTML and print to PDF using <span class="kbd">Ctrl</span> + <span class="kbd">P</span> → “Save as PDF”.
       </div>
     </section>
 
-    <!-- Page 7: Sketch -->
+    <!-- Page 11: Safety -->
     <section class="page">
-      <h2>Sketch (upload file)</h2>
-      <p>The Arduino sketch you upload is stored in this project at:</p>
-      <div class="callout">
-        <div class="title">Sketch path</div>
-        <p class="mono">HandbrakeController/HandbrakeController.ino</p>
-      </div>
-
-      <div class="callout">
-        <div class="title">Upload steps (Arduino IDE)</div>
-        <ol>
-          <li>Open <span class="mono">HandbrakeController/HandbrakeController.ino</span></li>
-          <li>Select board: <strong>ESP32 Dev Module</strong> (or your exact ESP32 model)</li>
-          <li>Select the correct COM port</li>
-          <li>Click <strong>Upload</strong></li>
-          <li>Open Serial Monitor at <strong>115200</strong> to confirm startup messages</li>
-        </ol>
-      </div>
-
-      <div class="callout ok">
-        <div class="title">Quick verification (recommended)</div>
-        <ul>
-          <li>On boot, LED blinks 3 times (firmware running).</li>
-          <li>Press and hold the manual button for ~3 seconds to toggle apply/release.</li>
-          <li>Park input active → brake applies. Leaving Park requires brake pedal to release.</li>
-        </ul>
-      </div>
+      <h2>Safety Information</h2>
 
       <div class="callout danger">
-        <div class="title">Disclaimer</div>
-        <p>Modifying brake systems can be dangerous. Verify function in a controlled environment and comply with local laws. Use at your own risk.</p>
+        <div class="title">Warning: Safety-Critical System</div>
+        <p>Modifying brake systems can result in serious injury or death. This project is provided for educational purposes. Use at your own risk.</p>
       </div>
 
-      <div class="footer">End of document</div>
+      <h3>Safety Guidelines</h3>
+      <ul>
+        <li>Always test thoroughly on a bench before vehicle installation</li>
+        <li>Keep a mechanical backup method to release the brake</li>
+        <li>Fuse all power connections appropriately</li>
+        <li>Test with vehicle secured (on jack stands or blocked)</li>
+        <li>Verify function after any changes before driving</li>
+        <li>Comply with local laws regarding vehicle modifications</li>
+        <li>Document your wiring for future maintenance</li>
+      </ul>
+
+      <h3>Built-in Safety Features</h3>
+      <table>
+        <tr>
+          <th>Feature</th>
+          <th>Protection</th>
+        </tr>
+        <tr>
+          <td>Brake Pedal Interlock</td>
+          <td>Prevents accidental release without brake pressed</td>
+        </tr>
+        <tr>
+          <td>Operation Timeout</td>
+          <td>Stops motor after 5 seconds max</td>
+        </tr>
+        <tr>
+          <td>Overcurrent Protection</td>
+          <td>Stops if current exceeds 25A</td>
+        </tr>
+        <tr>
+          <td>Voltage Protection</td>
+          <td>Blocks operation outside 11-16V range</td>
+        </tr>
+        <tr>
+          <td>Stall Detection</td>
+          <td>Stops if actuator is jammed</td>
+        </tr>
+        <tr>
+          <td>Watchdog Timer</td>
+          <td>Auto-reboot on firmware freeze</td>
+        </tr>
+        <tr>
+          <td>State Persistence</td>
+          <td>Remembers position across power loss</td>
+        </tr>
+      </table>
+
+      <div class="footer">
+        Electric Parking Brake Controller v3.1 RUGGED - Wiring Manual<br />
+        <span class="kbd">Ctrl</span> + <span class="kbd">P</span> > "Save as PDF" to print this document
+      </div>
+    </section>
+
+    <!-- Page 12: Required Libraries -->
+    <section class="page">
+      <h2>Required Arduino Libraries</h2>
+
+      <h3>Installation Steps</h3>
+      <ol>
+        <li>Open Arduino IDE</li>
+        <li>Go to <strong>Sketch > Include Library > Manage Libraries</strong></li>
+        <li>Search for and install each library below:</li>
+      </ol>
+
+      <table>
+        <tr>
+          <th>Library</th>
+          <th>Author</th>
+          <th>Purpose</th>
+        </tr>
+        <tr>
+          <td><strong>WebSockets</strong></td>
+          <td>Markus Sattler</td>
+          <td>Real-time web communication</td>
+        </tr>
+        <tr>
+          <td><strong>ArduinoJson</strong></td>
+          <td>Benoit Blanchon</td>
+          <td>JSON data formatting</td>
+        </tr>
+      </table>
+
+      <h3>Board Setup</h3>
+      <ol>
+        <li>Go to <strong>File > Preferences</strong></li>
+        <li>Add ESP32 board URL: <span class="mono" style="font-size: 11px;">https://dl.espressif.com/dl/package_esp32_index.json</span></li>
+        <li>Go to <strong>Tools > Board > Boards Manager</strong></li>
+        <li>Search "ESP32" and install <strong>esp32 by Espressif</strong></li>
+        <li>Select board: <strong>Tools > Board > ESP32 Dev Module</strong></li>
+      </ol>
+
+      <h3>Upload Settings</h3>
+      <table>
+        <tr>
+          <th>Setting</th>
+          <th>Value</th>
+        </tr>
+        <tr>
+          <td>Board</td>
+          <td>ESP32 Dev Module</td>
+        </tr>
+        <tr>
+          <td>Upload Speed</td>
+          <td>921600 (or 115200 if issues)</td>
+        </tr>
+        <tr>
+          <td>CPU Frequency</td>
+          <td>240MHz</td>
+        </tr>
+        <tr>
+          <td>Flash Frequency</td>
+          <td>80MHz</td>
+        </tr>
+        <tr>
+          <td>Flash Mode</td>
+          <td>QIO</td>
+        </tr>
+        <tr>
+          <td>Partition Scheme</td>
+          <td>Default 4MB with spiffs</td>
+        </tr>
+      </table>
+
+      <div class="callout ok">
+        <div class="title">Verify Upload Success</div>
+        <p>After upload, open Serial Monitor at <strong>115200 baud</strong>. You should see:</p>
+        <pre style="background: #f5f5f5; padding: 8px; border-radius: 4px; font-size: 12px;">Electric Parking Brake Controller
+Version: 3.1.0-RUGGED
+Watchdog enabled (8s timeout)
+AP Started: ParkingBrake
+IP Address: 192.168.4.1</pre>
+      </div>
+
+      <div class="footer">End of Document</div>
     </section>
 
   </div>
-
 </body>
 </html>
