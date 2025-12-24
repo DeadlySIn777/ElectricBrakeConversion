@@ -1,102 +1,171 @@
-# ElectricBrakeConversion
+﻿# ElectricBrakeConversion
 
 Electric parking brake controller for a 12V linear actuator (e.g., 350lb, 50mm stroke) using an **ESP32** and a **BTS7960** motor driver.
 
-- **Auto apply:** when Park input becomes active.
-- **Safe release:** requires brake pedal input to release when leaving Park.
-- **Manual override:** hold a momentary button ~3 seconds to toggle.
-- **Reliability-focused:** watchdog, debounced inputs, multi-sample validation, state persistence, LED status, actuation timeout.
+## Connect to Your Brake
 
-> Safety-critical project: bench test first, fuse the 12V feed, and test with the vehicle secured.
+1. Connect your phone to WiFi: **ParkingBrake**
+   Password: `brake1234`
 
-## Project files
+2. Open browser: **http://192.168.4.1**
 
-- Sketch: [HandbrakeController/HandbrakeController.ino](HandbrakeController/HandbrakeController.ino)
-- Wiring/installation manual (print to PDF): [ElectricParkingBrake_Manual.html](ElectricParkingBrake_Manual.html)
+3. Control your brake with the beautiful mobile UI!
+
+**No internet required!** The ESP32 creates its own WiFi network - works completely standalone.
+
+---
+
+## Features
+
+### RUGGED Edition (v3.1) - Automotive Grade!
+- **Hardware watchdog:** Auto-reboot if firmware freezes
+- **Voltage spike filtering:** Median filter rejects transients
+- **EMI-resistant inputs:** Multi-sample validation with timing spread
+- **Auto-retry:** Transient failures retry automatically
+- **Self-healing WiFi:** AP restarts if it fails
+- **Memory corruption detection:** Canary values monitored
+- **Overvoltage protection:** Won't operate above 16V
+- **Boot counter:** Track reboots for reliability analysis
+
+### Standalone Features (v3.0)
+- **WiFi Access Point mode:** Connect directly like a router - no internet needed!
+- **Beautiful iPhone-optimized UI:** Control from your phone's browser
+- **Real-time WebSocket updates:** Instant feedback, no page refresh
+- **Works offline:** Perfect for vehicle installation
+- **Touch-optimized controls:** Big button, easy to use
+
+### Core Features
+- **Auto apply:** when Park input becomes active
+- **Safe release:** requires brake pedal input to release when leaving Park
+- **Manual override:** hold a momentary button ~3 seconds to toggle
+- **State persistence:** remembers brake position across power cycles
+
+### Professional Features
+- **Current sensing:** Detects when actuator hits limit switches (stall detection)
+- **Soft start/stop:** PWM ramping reduces mechanical stress
+- **Low/high voltage protection:** Won't operate outside 11-16V range
+- **Detailed diagnostics:** Error codes, retry counts, statistics
+
+> **Safety-critical project:** bench test first, fuse the 12V feed, and test with the vehicle secured.
+
+---
+
+## Project Files
+
+| File | Description |
+|------|-------------|
+| `HandbrakeController_v3.ino` | **Recommended!** Standalone with mobile UI |
+| `HandbrakeController.ino` | Cloud-connected version |
+| `server/server.js` | Optional telemetry server |
+| `ElectricParkingBrake_Manual.html` | Wiring manual |
+
+---
 
 ## Hardware
 
+### Required
 - ESP32 DevKit (Arduino-compatible)
-- BTS7960 motor driver (RPWM/LPWM + R_EN/L_EN)
+- BTS7960 motor driver
 - 12V linear actuator with built-in limit switches
-- 12V → 5V buck converter (3A+ recommended)
-- Inline fuse + holder (start at 10A; adjust for your actuator)
+- 12V to 5V buck converter (3A+ recommended)
+- Inline fuse + holder (10A)
 - Momentary pushbutton (manual override)
 
-## Wiring (pin map)
+### Optional
+- **ACS712-30A module** on GPIO33 (current sensing)
+- **Voltage divider** (47K + 10K) on GPIO36 (battery monitoring)
 
-All inputs are configured as `INPUT_PULLUP`:
-- **Inactive = HIGH** (internal pull-up)
-- **Active = LOW** (switch to ground)
+---
 
-### ESP32 → BTS7960
+## Wiring
 
-| ESP32 GPIO | BTS7960 Pin | Meaning |
-|---:|---|---|
-| 25 | RPWM | Extend / Apply |
-| 26 | LPWM | Retract / Release |
+### ESP32 to BTS7960
+
+| ESP32 | BTS7960 | Function |
+|-------|---------|----------|
+| 25 | RPWM | Extend/Apply |
+| 26 | LPWM | Retract/Release |
 | 27 | R_EN | Enable |
 | 14 | L_EN | Enable |
-| 5V/Vin | VCC | Logic power (verify your module) |
-| GND | GND | Common ground |
+| GND | GND | Ground |
 
-### Inputs (active LOW)
+### Inputs (active LOW - connect to ground when active)
 
-| ESP32 GPIO | Signal | How |
-|---:|---|---|
-| 34 | Park | Ground when in Park |
-| 35 | Brake pedal | Ground when brake pressed |
-| 32 | Manual override button | Momentary to GND (hold ~3s) |
+| ESP32 | Signal |
+|-------|--------|
+| 34 | Park signal |
+| 35 | Brake pedal |
+| 32 | Manual button |
+| 2 | Status LED |
 
-### Status LED
+---
 
-| ESP32 GPIO | Purpose |
-|---:|---|
-| 2 | Status LED (built-in on many ESP32 boards) |
+## Upload to ESP32
 
-LED behavior:
-- 3 quick blinks at boot = firmware running
-- blinking = actuator moving
-- solid ON = brake applied
-- OFF = brake released
+### 1. Install Libraries
 
-## Firmware behavior
+In Arduino IDE: **Sketch > Include Library > Manage Libraries**
 
-- **Shift into Park:** brake applies.
-- **Shift out of Park:** brake releases **only** if brake pedal input is active.
-- **Manual override:** hold the button ~3 seconds to toggle apply/release.
+| Library | Author |
+|---------|--------|
+| WebSockets | Markus Sattler |
+| ArduinoJson | Benoit Blanchon |
+
+### 2. Upload
+
+1. Install **ESP32 board support** (Boards Manager)
+2. Open `HandbrakeController_v3.ino`
+3. Board: **ESP32 Dev Module**
+4. Select COM port
+5. Upload!
+
+### 3. Connect
+
+1. Open Serial Monitor (115200 baud)
+2. Connect phone to WiFi: **ParkingBrake** (password: `brake1234`)
+3. Open **http://192.168.4.1**
+
+### Customize WiFi Name
+
+Edit these lines in the code:
+```cpp
+const char* AP_SSID     = "ParkingBrake";    // Change this
+const char* AP_PASSWORD = "brake1234";        // Min 8 chars
+```
+
+---
+
+## LED Patterns
+
+| Pattern | Meaning |
+|---------|---------|
+| OFF | Brake released |
+| Solid ON | Brake applied |
+| Fast blink | Actuator moving |
+| 3 blinks at boot | System ready |
+
+---
 
 ## Tuning
 
-Open [HandbrakeController/HandbrakeController.ino](HandbrakeController/HandbrakeController.ino) and adjust:
+Adjust these values in the code:
+```cpp
+int apply_ms   = 2500;   // Apply travel time (ms)
+int release_ms = 1800;   // Release travel time (ms)
+int duty       = 220;    // PWM power (0-255)
+```
 
-- `apply_ms` — apply travel time
-- `release_ms` — release travel time
-- `duty` — PWM power (0–255)
-- `HOLD_TIME_MS` — override hold time
+---
 
-Tip: because your actuator has built-in limit switches, it won’t run past end-of-travel, but keeping timings close reduces heat.
+## Safety Notes
 
-## Upload (Arduino IDE)
+- Fuse the 12V feed close to the battery
+- Use 14-16 AWG wire for motor power
+- Keep motor wires away from signal wires
+- Test on bench before vehicle installation
 
-1. Install ESP32 board support in Arduino IDE (Boards Manager).
-2. Open [HandbrakeController/HandbrakeController.ino](HandbrakeController/HandbrakeController.ino)
-3. Board: **ESP32 Dev Module** (or your exact ESP32 model)
-4. Select the correct COM port
-5. Upload
-6. Serial Monitor: **115200**
+---
 
-## Print the manual to PDF
+## License
 
-Open [ElectricParkingBrake_Manual.html](ElectricParkingBrake_Manual.html) in a browser → `Ctrl+P` → **Save as PDF**.
-
-## Safety notes
-
-- Fuse the 12V feed close to the source.
-- Use appropriate wire gauge for motor power (often 14–16AWG).
-- Keep motor leads away from signal wires.
-- If the ESP32 resets when the actuator starts: upgrade the buck converter, improve grounding, and add capacitance on 5V.
-
-## Contributing
-
-PRs welcome (especially around noise hardening, enclosure guidance, and vehicle-safe wiring practices).
+MIT - See [LICENSE](LICENSE) file

@@ -1,0 +1,15 @@
+{
+  "name": "brake-telemetry-server",
+  "version": "1.0.0",
+  "description": "Telemetry server for Electric Parking Brake Controller",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "keywords": ["esp32", "telemetry", "parking-brake", "iot"],
+  "license": "MIT"
+}
